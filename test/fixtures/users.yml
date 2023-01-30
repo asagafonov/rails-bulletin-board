@@ -1,0 +1,7 @@
+one:
+  name: Bob
+  email: bob@example.com
+
+two:
+  name: Chuck
+  email: chuck@gmail.com
