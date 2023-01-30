@@ -10,6 +10,8 @@ gem 'bootsnap', require: false
 gem 'cssbundling-rails'
 gem 'jbuilder'
 gem 'jsbundling-rails'
+gem 'omniauth-github'
+gem 'omniauth-rails_csrf_protection'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 7.0.4', '>= 7.0.4.2'
 gem 'rails-i18n'
