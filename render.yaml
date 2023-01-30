@@ -1,6 +1,6 @@
 databases:
-  - name: rails-board
-    databaseName: rails-board
+  - name: railsboard
+    databaseName: railsboard
     user: asagafonov
 
 services:
