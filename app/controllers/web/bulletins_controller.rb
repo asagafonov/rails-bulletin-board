@@ -3,7 +3,7 @@
 module Web
   class BulletinsController < ApplicationController
     def index
-      @bulletins = Bulletin.by_creation_order_desc
+      @bulletins = Bulletin.by_creation_date_desc
     end
 
     def show
@@ -15,7 +15,7 @@ module Web
     end
 
     def create
-      return unless current_user
+      redirect_to bulletins_path, alert: t('bulletins.forbidden') and return unless current_user
 
       @bulletin = Bulletin.create(bulletin_params)
 
@@ -31,7 +31,7 @@ module Web
     end
 
     def update
-      return unless current_user
+      redirect_to bulletins_path, alert: t('bulletins.forbidden') and return unless current_user
 
       @bulletin = Bulletin.find(params[:id])
 
@@ -43,7 +43,7 @@ module Web
     end
 
     def destroy
-      return unless current_user
+      redirect_to bulletins_path, alert: t('bulletins.forbidden') and return unless current_user
 
       @bulletin = Bulletin.find(params[:id])
 

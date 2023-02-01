@@ -11,5 +11,5 @@ class Bulletin < ApplicationRecord
                     content_type: %i[png jpg jpeg],
                     size: { less_than: 5.megabytes }
 
-  scope :by_creation_order_desc, -> { order(created_at: :desc) }
+  scope :by_creation_date_desc, -> { order(created_at: :desc) }
 end
