@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     get 'auth/:provider/callback', to: 'auth#callback', as: :callback_auth
     get 'auth/logout', to: 'auth#logout'
 
-    resource :bulletins
+    resources :bulletins
   end
 
   root 'web/bulletins#index'
