@@ -9,6 +9,8 @@ ruby '3.1.2'
 gem 'active_storage_validations'
 gem 'bootsnap', require: false
 gem 'cssbundling-rails'
+gem 'file_validators'
+gem 'image_processing'
 gem 'jbuilder'
 gem 'jsbundling-rails'
 gem 'omniauth-github'
