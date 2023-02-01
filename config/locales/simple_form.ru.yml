@@ -29,3 +29,5 @@ ru:
     # prompts:
     #   defaults:
     #     age: 'Select your age'
+    bulletins:
+      submit: Создать объявление

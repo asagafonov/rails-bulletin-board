@@ -35,8 +35,15 @@ ru:
 
   views:
     main_page: Доска объявлений
+    add_bulletin: Добавить
 
     auth:
       login:
         github: Войти через GitHub
       logout: Выйти
+      admin: Админка
+
+    bulletins:
+      title: Объявления
+      new: Добавить объявление
+      published_by: опубликовано пользователем
