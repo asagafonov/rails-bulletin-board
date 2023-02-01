@@ -1,4 +1,8 @@
-h1
-  | Bulletins#show
-p
-  | Find me in app/views/bulletins/show.html.erb
+h1.h3 = @bulletin.title
+p.pb-4.mb-4.border-bottom = "#{t('views.bulletins.published_by')} #{@bulletin.user.name}"
+
+.row
+  .col-2
+    = image_tag(@bulletin.image)
+  .col-2
+    p = @bulletin.description

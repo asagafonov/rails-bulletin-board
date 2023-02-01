@@ -1,4 +1,12 @@
-h1
-  | Bulletins#index
-p
-  | Find me in app/views/bulletins/index.html.erb
+h1.pb-4.border-bottom.h3 = t('views.bulletins.title')
+
+.container
+  .row
+    - @bulletins.each do |bulletin|
+      .col-3.pt-2
+        = link_to bulletin_path(bulletin), class: 'text-decoration-none' do
+          .card.shadow-sm
+            = image_tag(bulletin.image)
+            .p-4
+              h5.card-title.text-dark = bulletin.title
+              h6.card-subtitle.text-muted = time_ago_in_words(bulletin.created_at)
