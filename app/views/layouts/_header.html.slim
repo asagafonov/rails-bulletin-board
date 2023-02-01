@@ -1,5 +1,5 @@
 .container.mb-2
   .d-flex.flex-wrap.align-items-center.py-2.border-bottom
     .navbar.navbar-expand-md.navbar-light.me-auto
-      = link_to 'Доска Объявлений', root_path, class: 'navbar-brand me-md-4'
-    = link_to 'log in', auth_request_url('github'), data: { 'turbo-method': :post }
+      = link_to t('views.main_page'), root_path, class: 'navbar-brand me-md-4'
+    = button_to 'log in', auth_request_url('github'), data: { 'turbo-method': :post }
