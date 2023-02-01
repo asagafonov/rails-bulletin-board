@@ -3,13 +3,14 @@
 module Web
   class AuthController < ApplicationController
     def callback
-      email = auth[:info][:email].downcase
+      name = auth[:name]
+      email = auth[:email]
       user = User.find_by(email:)
 
       if user&.persisted?
         session[:user_id] = user.id
       else
-        new_user = User.create!(name: auth[:info][:name], email: auth[:info][:email])
+        new_user = User.create!(name:, email:)
         session[:user_id] = new_user.id
       end
 
@@ -19,7 +20,8 @@ module Web
     private
 
     def auth
-      request.env['omniauth.auth']
+      data = request.env['omniauth.auth']
+      { email: data[:info][:email], name: data[:info][:name] }
     end
   end
 end
