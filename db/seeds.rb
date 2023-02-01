@@ -2,6 +2,6 @@
 
 10.times do
   Category.create(
-    name: Faker::Commerce.brand
+    name: Faker::Commerce.unique.brand
   )
 end
