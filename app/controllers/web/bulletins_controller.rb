@@ -3,7 +3,7 @@
 module Web
   class BulletinsController < ApplicationController
     def index
-      @bulletins = Bulletin.by_creation_date_desc
+      @bulletins = Bulletin.includes(:user).by_creation_date_desc
     end
 
     def show
@@ -20,7 +20,7 @@ module Web
       @bulletin = Bulletin.create(bulletin_params)
 
       if @bulletin.save
-        redirect_to bulletin_path(@bulletin)
+        redirect_to @bulletin
       else
         render :new, status: :unprocessable_entity
       end
@@ -36,7 +36,7 @@ module Web
       @bulletin = Bulletin.find(params[:id])
 
       if @bulletin.update(bulletin_params)
-        redirect_to bulletin_path(@bulletin)
+        redirect_to @bulletin
       else
         render :edit, status: :unprocessable_entity
       end
@@ -57,7 +57,7 @@ module Web
     private
 
     def bulletin_params
-      params.require(:bulletin).permit(:title, :description, :image)
+      params.require(:bulletin).permit(:category_id, :description, :image, :title, :user_id)
     end
   end
 end
