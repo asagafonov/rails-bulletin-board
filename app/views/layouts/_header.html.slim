@@ -2,4 +2,5 @@
   .d-flex.flex-wrap.align-items-center.py-2.border-bottom
     .navbar.navbar-expand-md.navbar-light.me-auto
       = link_to t('views.main_page'), root_path, class: 'navbar-brand me-md-4'
-    = button_to 'log in', auth_request_url('github'), data: { 'turbo-method': :post }
+    - unless current_user
+      = button_to 'log in', auth_request_url('github'), data: { turbo: false }, method: :post
