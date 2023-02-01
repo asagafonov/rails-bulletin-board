@@ -31,7 +31,12 @@
 
 ru:
   bulletins:
-    forbidden: 'Вы не можете создать объявление'
+    forbidden: Вы не можете создать объявление
 
   views:
-    main_page: 'Доска объявлений'
+    main_page: Доска объявлений
+
+    auth:
+      login:
+        github: Войти через GitHub
+      logout: Выйти
