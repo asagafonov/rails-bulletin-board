@@ -1,0 +1,2 @@
+iphone_picture_blob: <%= ActiveStorage::FixtureSet.blob filename: "phone.jpeg", service_name: "test_fixtures" %>
+  

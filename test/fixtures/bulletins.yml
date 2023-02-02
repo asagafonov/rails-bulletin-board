@@ -1,9 +1,11 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  title: MyString
-  description: MyText
+  title: Laptop
+  description: 8 years old but still runs
+  user: bob
+  category: tech
 
 two:
-  title: MyString
-  description: MyText
+  title: Pasta
+  description: Tasty and ready-to-eat
+  user: chuck
+  category: food
