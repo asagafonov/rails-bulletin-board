@@ -45,5 +45,7 @@ ru:
 
     bulletins:
       title: Объявления
+      description: Описание товара
       new: Добавить объявление
       published_by: опубликовано пользователем
+      back: Назад
