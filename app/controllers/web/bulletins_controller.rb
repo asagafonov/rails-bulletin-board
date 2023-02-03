@@ -12,15 +12,15 @@ module Web
 
     def new
       @bulletin = Bulletin.new
+      authorize @bulletin
     end
 
     def create
-      redirect_to bulletins_path, alert: t('bulletins.forbidden') and return unless current_user
-
       @bulletin = Bulletin.create(bulletin_params)
+      authorize @bulletin
 
       if @bulletin.save
-        redirect_to @bulletin
+        redirect_to @bulletin, notice: t('bulletins.create.success')
       else
         render :new, status: :unprocessable_entity
       end
@@ -28,29 +28,28 @@ module Web
 
     def edit
       @bulletin = Bulletin.find(params[:id])
+      authorize @bulletin
     end
 
     def update
-      redirect_to bulletins_path, alert: t('bulletins.forbidden') and return unless current_user
-
       @bulletin = Bulletin.find(params[:id])
+      authorize @bulletin
 
       if @bulletin.update(bulletin_params)
-        redirect_to @bulletin
+        redirect_to @bulletin, notice: t('bulletins.update.success')
       else
         render :edit, status: :unprocessable_entity
       end
     end
 
     def destroy
-      redirect_to bulletins_path, alert: t('bulletins.forbidden') and return unless current_user
-
       @bulletin = Bulletin.find(params[:id])
+      authorize @bulletin
 
       if @bulletin.destroy
-        redirect_to bulletins_path
+        redirect_to bulletins_path, notice: t('bulletins.destroy.success')
       else
-        @bulletin.reload
+        redirect_to @bulletin, alert: t('bulletins.destroy.failure')
       end
     end
 

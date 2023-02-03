@@ -1,7 +1,9 @@
-one:
+bob:
   name: Bob
   email: bob@example.com
+  admin: true
 
-two:
+chuck:
   name: Chuck
   email: chuck@gmail.com
+  admin: false
