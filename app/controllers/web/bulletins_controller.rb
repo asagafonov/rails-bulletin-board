@@ -3,7 +3,7 @@
 module Web
   class BulletinsController < ApplicationController
     def index
-      @bulletins = Bulletin.includes(:user).by_creation_date_desc
+      @bulletins = Bulletin.includes(:user).already_published.by_creation_date_desc
     end
 
     def show
