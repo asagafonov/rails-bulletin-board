@@ -5,13 +5,13 @@
 class BulletinStateOperation
   def call(bulletin:, key:)
     case key
-    when :to_moderation
+    when 'to_moderation'
       bulletin.to_moderation!
-    when :publish
+    when 'publish'
       bulletin.publish!
-    when :reject
+    when 'reject'
       bulletin.reject!
-    when :archive
+    when 'archive'
       bulletin.archive!
     else
       false

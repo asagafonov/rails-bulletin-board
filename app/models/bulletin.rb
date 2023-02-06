@@ -7,7 +7,6 @@ class Bulletin < ApplicationRecord
   belongs_to :user
   belongs_to :category
 
-  alias_attribute :state, :aasm_state
   aasm column: :state do
     state :draft, initial: true
     state :under_moderation

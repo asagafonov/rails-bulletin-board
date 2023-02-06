@@ -57,6 +57,7 @@ module Web
       @bulletin = find_bulletin
 
       BulletinStateOperation.new.call(bulletin: @bulletin, key: params[:state_operation_key])
+      redirect_to user_path(current_user)
     end
 
     private
