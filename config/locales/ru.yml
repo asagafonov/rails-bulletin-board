@@ -36,6 +36,8 @@ ru:
   views:
     main_page: Доска объявлений
     add_bulletin: Добавить
+    add_bulletin_full: Добавить объявление
+    my_profile: Мои объявления
 
     auth:
       login:
@@ -47,6 +49,16 @@ ru:
       title: Объявления
       description: Описание товара
       new: Добавить объявление
+      edit: Редактировать объявление
       published_by: опубликовано пользователем
       back: Назад
       empty: Опубликованных объявлений пока нет. Будьте первым!
+      table:
+        name: Название
+        state: Состояние
+        created_at: Дата публикации
+        actions: Действия
+        show: Показать
+        edit: Редактировать
+        to_moderate: На модерацию
+        archive: В архив
