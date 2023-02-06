@@ -13,7 +13,7 @@ h1.pb-4.border-bottom.h3 = t('views.my_profile')
       - @user_bulletins.each do |bulletin|
         tr
           td = bulletin.title
-          td = UsersHelper.translate_state(bulletin.state)
+          td = t("bulletins.state.#{bulletin.state}") || ''
           td = time_ago_in_words(bulletin.created_at)
           td
             = link_to t('views.bulletins.table.show'), bulletin_path(bulletin), class: 'me-2'
