@@ -12,4 +12,6 @@ h1.pb-4.border-bottom.h3 = t('views.bulletins.title')
                 h5.card-title.text-dark = bulletin.title
                 h6.card-subtitle.text-muted = time_ago_in_words(bulletin.created_at)
     - else
-      h5.my-4.p-0 = t('views.bulletins.empty')
+      .d-flex.my-4.p-0.align-items-center.justify-content-between
+        h5.p-0 = t('views.bulletins.empty')
+        = link_to t('views.add_bulletin_full'), new_bulletin_path, class: 'btn btn-primary w-25'
