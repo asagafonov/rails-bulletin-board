@@ -7,7 +7,7 @@ module Web
     end
 
     def show
-      @bulletin = Bulletin.find(params[:id])
+      @bulletin = find_bulletin
     end
 
     def new
@@ -27,12 +27,12 @@ module Web
     end
 
     def edit
-      @bulletin = Bulletin.find(params[:id])
+      @bulletin = find_bulletin
       authorize @bulletin
     end
 
     def update
-      @bulletin = Bulletin.find(params[:id])
+      @bulletin = find_bulletin
       authorize @bulletin
 
       if @bulletin.update(bulletin_params)
@@ -43,7 +43,7 @@ module Web
     end
 
     def destroy
-      @bulletin = Bulletin.find(params[:id])
+      @bulletin = find_bulletin
       authorize @bulletin
 
       if @bulletin.destroy
@@ -53,7 +53,17 @@ module Web
       end
     end
 
+    def update_state
+      @bulletin = find_bulletin
+
+      BulletinStateOperation.new.call(bulletin: @bulletin, key: params[:state_operation_key])
+    end
+
     private
+
+    def find_bulletin
+      Bulletin.find(params[:id])
+    end
 
     def bulletin_params
       params.require(:bulletin).permit(:category_id, :description, :image, :title, :user_id)

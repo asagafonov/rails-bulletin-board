@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     get 'auth/logout', to: 'auth#logout'
     get 'profile', to: 'users#index'
 
-    resources :bulletins
+    resources :bulletins do
+      post 'update_state', on: :member
+    end
   end
 
   root 'web/bulletins#index'
