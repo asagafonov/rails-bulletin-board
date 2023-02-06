@@ -32,6 +32,11 @@
 ru:
   bulletins:
     forbidden: Вы не можете создать объявление
+    state:
+      draft: Черновик
+      under_moderation: На модерации
+      published: Опубликовано
+      archived: В архиве
 
   views:
     main_page: Доска объявлений
