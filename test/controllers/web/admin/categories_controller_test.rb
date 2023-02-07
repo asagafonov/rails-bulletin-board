@@ -3,33 +3,56 @@
 require 'test_helper'
 
 class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
-  # test "should get index" do
-  #   get web_admin_categories_index_url
-  #   assert_response :success
-  # end
+  setup do
+    @admin = users(:bob)
+    @user = users(:chuck)
 
-  # test "should get new" do
-  #   get web_admin_categories_new_url
-  #   assert_response :success
-  # end
+    @category = categories(:tech)
 
-  # test "should get create" do
-  #   get web_admin_categories_create_url
-  #   assert_response :success
-  # end
+    @params = {
+      name: Faker::Lorem.sentence(word_count: 1)
+    }
+  end
 
-  # test "should get edit" do
-  #   get web_admin_categories_edit_url
-  #   assert_response :success
-  # end
+  test 'admin should view categories' do
+    sign_in @admin
+    get admin_categories_url
 
-  # test "should get update" do
-  #   get web_admin_categories_update_url
-  #   assert_response :success
-  # end
+    assert_response :success
+  end
 
-  # test "should get destroy" do
-  #   get web_admin_categories_destroy_url
-  #   assert_response :success
-  # end
+  test 'admin should create category' do
+    sign_in @admin
+
+    post admin_categories_url, params: { category: @params }
+
+    category = Category.find_by(@params)
+
+    assert { category }
+  end
+
+  test 'admin should edit category' do
+    sign_in @admin
+
+    patch admin_category_url(@category), params: { category: { name: 'Edited name' } }
+    @category.reload
+
+    assert { @category.name == 'Edited name' }
+  end
+
+  test 'user should not access categories' do
+    sign_in @user
+
+    assert_raises Pundit::NotAuthorizedError do
+      get admin_categories_url
+    end
+
+    assert_raises Pundit::NotAuthorizedError do
+      post admin_categories_url, params: { category: @params }
+    end
+
+    assert_raises Pundit::NotAuthorizedError do
+      patch admin_category_url(@category), params: { category: { name: 'Edited name' } }
+    end
+  end
 end
