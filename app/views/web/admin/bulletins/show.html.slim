@@ -1,0 +1,12 @@
+h1.h3 = @bulletin.title
+p.pb-4.mb-4.border-bottom = "#{t("views.bulletins.published_by")} #{@bulletin.user.name}"
+
+.d-flex.border-bottom.pb-4
+  .w-50
+    = image_tag(@bulletin.image, class: 'w-100')
+  .w-50.p-2
+    h5 = t('views.bulletins.description')
+    p = @bulletin.description
+
+.d-flex.justify-content-end
+  = link_to t('views.bulletins.back'), :back, class: 'btn btn-secondary mt-4'

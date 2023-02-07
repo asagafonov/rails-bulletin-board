@@ -1,4 +1,4 @@
-= simple_form_for(@bulletin) do |f|
+= simple_form_for(bulletin) do |f|
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   = f.input :title
@@ -7,7 +7,7 @@
   = f.input :user_id, as: :hidden, input_html: { value: current_user&.id }
 
   - if type == :edit
-    = image_tag rails_blob_path(@bulletin.image), class: 'x-width-120 py-4'
+    = image_tag rails_blob_path(bulletin.image), class: 'x-width-120 py-4'
   = f.input :image, as: :file, required: true, input_html: { class: 'form-control mb-4' }
 
   = f.submit t('simple_form.bulletins.submit'), class: 'btn btn-primary'

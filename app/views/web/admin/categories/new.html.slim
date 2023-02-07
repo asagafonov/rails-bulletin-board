@@ -1,4 +1,5 @@
-h1
-  | Web::Admin::Categories#new
-p
-  | Find me in app/views/web/admin/categories/new.html.erb
+h1.pb-4.mb-4.border-bottom.h3 = t('views.categories.new')
+
+= render 'web/admin/categories/partials/form', category: @category,
+                                               url: new_admin_category_url,
+                                               type: :new
