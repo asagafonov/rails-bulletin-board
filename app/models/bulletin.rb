@@ -37,6 +37,7 @@ class Bulletin < ApplicationRecord
                     content_type: %i[png jpg jpeg],
                     size: { less_than: 5.megabytes }
 
+  scope :under_moderation, -> { where(state: :under_moderation) }
   scope :already_published, -> { where(state: :published) }
   scope :by_creation_date_desc, -> { order(created_at: :desc) }
 end

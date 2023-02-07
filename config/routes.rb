@@ -3,10 +3,11 @@
 Rails.application.routes.draw do
   scope module: :web do
     namespace :admin do
-      resources :bulletins, only: %i[edit update destroy]
+      resources :bulletins
+      resources :categories
     end
 
-    resources :categories, path: 'admin/categories', except: :show
+    get 'admin/', to: 'admin/bulletins#moderation'
 
     post 'auth/:provider', to: 'auth#request', as: :auth_request
     get 'auth/:provider/callback', to: 'auth#callback', as: :callback_auth

@@ -67,3 +67,21 @@ ru:
         edit: Редактировать
         to_moderate: На модерацию
         archive: В архив
+        publish: Опубликовать
+        reject: Вернуть
+
+    categories:
+      new: Добавить категорию
+      edit: Редактировать
+      destroy: Удалить
+      confirm_destruction: Вы уверены?
+      table:
+        id: Id
+        name: Название
+        actions: Действия
+
+  admin:
+    panel:
+      bulletins_on_moderation: Объявления на модерации
+      bulletins: Все объявления
+      categories: Все категории

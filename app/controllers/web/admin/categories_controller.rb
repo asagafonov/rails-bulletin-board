@@ -6,6 +6,7 @@ module Web
       def index
         authorize Category
         @categories = Category.all
+        @page_type = :categories
       end
 
       def new
@@ -18,7 +19,7 @@ module Web
         authorize @category
 
         if @category.save
-          redirect_to categories_path, notice: t('admin.categories.success')
+          redirect_to admin_categories_path, notice: t('admin.categories.success')
         else
           render :new, status: :unprocessable_entity
         end
@@ -34,7 +35,7 @@ module Web
         authorize @category
 
         if @category.update(category_params)
-          redirect_to categories_path, notice: t('admin.categories.update.success')
+          redirect_to admin_categories_path, notice: t('admin.categories.update.success')
         else
           render :edit, status: :unprocessable_entity
         end
@@ -45,7 +46,7 @@ module Web
         authorize @category
 
         if @category.destroy
-          redirect_to categories_path, notice: t('admin.categories.destroy.success')
+          redirect_to admin_categories_path, notice: t('admin.categories.destroy.success')
         else
           redirect_to @category, alert: t('admin.categories.destroy.failure')
         end

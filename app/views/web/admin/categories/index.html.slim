@@ -1,4 +1,22 @@
-h1
-  | Web::Admin::Categories#index
-p
-  | Find me in app/views/web/admin/categories/index.html.erb
+.row
+  = render 'web/admin/partials/admin_panel', page_type: @page_type
+  .col-md-9
+    h1.pb-4.mb-4.border-bottom.h3 = t('admin.panel.categories')
+    .row.mt-2
+      = link_to t('views.categories.new'), new_admin_category_path, class: 'mb-2'
+      table.table.table-borderless
+        thead
+          tr
+            th = t('views.categories.table.id')
+            th = t('views.categories.table.name')
+            th = t('views.categories.table.actions')
+        tbody
+          - @categories.each do |category|
+            tr
+              td = category.id
+              td = category.name
+              td
+                = link_to t('views.categories.edit'), edit_admin_category_path(category), class: 'me-2'
+                = link_to t('views.categories.destroy'), admin_category_path(category),
+                                                         data: { 'turbo-method': :destroy, 'turbo-confirm': t('views.categories.confirm_destruction') },
+                                                         class: 'link-danger'
