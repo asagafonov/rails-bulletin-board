@@ -18,7 +18,7 @@
                 = link_to t('views.bulletins.table.publish'), update_state_bulletin_path(bulletin, state_operation_key: :publish),
                                                               data: { 'turbo-method': :patch },
                                                               class: 'me-2'
-                = link_to t('views.bulletins.table.reject'), etin_path(bulletin, state_operation_key: :reject),
+                = link_to t('views.bulletins.table.reject'),  update_state_bulletin_path(bulletin, state_operation_key: :reject),
                                                               data: { 'turbo-method': :patch },
                                                               class: 'me-2'
                 = link_to t('views.bulletins.table.archive'), update_state_bulletin_path(bulletin, state_operation_key: :archive),
