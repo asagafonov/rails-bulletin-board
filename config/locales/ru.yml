@@ -32,10 +32,17 @@
 ru:
   bulletins:
     forbidden: Вы не можете создать объявление
+    state:
+      draft: Черновик
+      under_moderation: На модерации
+      published: Опубликовано
+      archived: В архиве
 
   views:
     main_page: Доска объявлений
     add_bulletin: Добавить
+    add_bulletin_full: Добавить объявление
+    my_profile: Мои объявления
 
     auth:
       login:
@@ -47,5 +54,34 @@ ru:
       title: Объявления
       description: Описание товара
       new: Добавить объявление
+      edit: Редактировать объявление
       published_by: опубликовано пользователем
       back: Назад
+      empty: Опубликованных объявлений пока нет. Будьте первым!
+      table:
+        name: Название
+        state: Состояние
+        created_at: Дата публикации
+        actions: Действия
+        show: Показать
+        edit: Редактировать
+        to_moderate: На модерацию
+        archive: В архив
+        publish: Опубликовать
+        reject: Вернуть
+
+    categories:
+      new: Добавить категорию
+      edit: Редактировать
+      destroy: Удалить
+      confirm_destruction: Вы уверены?
+      table:
+        id: Id
+        name: Название
+        actions: Действия
+
+  admin:
+    panel:
+      bulletins_on_moderation: Объявления на модерации
+      bulletins: Все объявления
+      categories: Все категории

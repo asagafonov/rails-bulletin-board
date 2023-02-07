@@ -31,3 +31,7 @@ ru:
     #     age: 'Select your age'
     bulletins:
       submit: Создать объявление
+
+    categories:
+      submit: Создать категорию
+      submit_edit: Обновить категорию

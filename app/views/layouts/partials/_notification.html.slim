@@ -1,7 +1,7 @@
 - flash.each do |type, message|
   - if type == 'notice'
-    .alert.alert-info
+    .container.alert.alert-info.alert-dismissible.fade.show
       span = message
   - if type == 'alert'
-    .alert.alert-danger
+    .container.alert.alert-danger.alert-dismissible.fade.show
       span = message

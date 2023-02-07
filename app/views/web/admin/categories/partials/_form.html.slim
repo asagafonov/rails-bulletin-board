@@ -1,0 +1,6 @@
+= simple_form_for(category, url:) do |f|
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  = f.input :name
+
+  = f.submit type == :new ? t('simple_form.categories.submit') : t('simple_form.categories.submit_edit'), class: 'btn btn-primary mt-4'

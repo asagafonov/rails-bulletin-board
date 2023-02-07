@@ -1,11 +1,13 @@
-one:
-  title: Laptop
-  description: 8 years old but still runs
-  user: bob
-  category: tech
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-two:
-  title: Pasta
-  description: Tasty and ready-to-eat
-  user: chuck
+iphone:
+  title: iPhone 13 Pro Max
+  description: Slightly scratched
+  category: tech
+  user: bob
+
+pasta:
+  title: Fuzilli with pesto
+  description: Ready to eat
   category: food
+  user: chuck

@@ -1,7 +1,9 @@
 bob:
   name: Bob
   email: bob@example.com
+  admin: true
 
 chuck:
   name: Chuck
   email: chuck@gmail.com
+  admin: false

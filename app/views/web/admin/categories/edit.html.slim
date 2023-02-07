@@ -1,0 +1,5 @@
+h1.pb-4.mb-4.border-bottom.h3 = t('views.categories.edit')
+
+= render 'web/admin/categories/partials/form', category: @category,
+                                               url: edit_admin_category_url(@category),
+                                               type: :edit

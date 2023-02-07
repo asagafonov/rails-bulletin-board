@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.2'
 
-# gem "bcrypt", "~> 3.1.7"
+gem 'aasm'
 gem 'active_storage_validations'
 gem 'bootsnap', require: false
 gem 'cssbundling-rails'
@@ -16,6 +16,7 @@ gem 'jsbundling-rails'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
 gem 'puma', '~> 5.0'
+gem 'pundit'
 gem 'rails', '~> 7.0.4', '>= 7.0.4.2'
 gem 'rails-i18n'
 gem 'rollbar'

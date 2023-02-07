@@ -1,0 +1,9 @@
+.col-md-3
+  ul.nav.flex-column.nav-pills
+    li.nav-item
+      = link_to t('admin.panel.bulletins_on_moderation'), admin_path,
+                                                          class: "nav-link #{page_type == :bulletins_on_moderation ? "active" : "link-dark"}"
+      = link_to t('admin.panel.bulletins'), admin_bulletins_path,
+                                            class: "nav-link #{page_type == :bulletins ? "active" : "link-dark"}"
+      = link_to t('admin.panel.categories'), admin_categories_path,
+                                            class: "nav-link #{page_type == :categories ? "active" : "link-dark"}"

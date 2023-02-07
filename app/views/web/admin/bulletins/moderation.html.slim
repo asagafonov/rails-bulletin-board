@@ -1,0 +1,26 @@
+.row
+  = render 'web/admin/partials/admin_panel', page_type: @page_type
+  .col-md-9
+    h1.pb-4.mb-4.border-bottom.h3 = t('admin.panel.bulletins_on_moderation')
+    .row.mt-2
+      table.table.table-borderless
+        thead
+          tr
+            th = t('views.bulletins.table.name')
+            th = t('views.bulletins.table.created_at')
+            th = t('views.bulletins.table.actions')
+        tbody
+          - @bulletins_on_moderation.each do |bulletin|
+            tr
+              td = bulletin.title
+              td = time_ago_in_words(bulletin.created_at)
+              td
+                = link_to t('views.bulletins.table.publish'), update_state_bulletin_path(bulletin, bulletin:, state_operation_key: :publish),
+                                                              data: { 'turbo-method': :patch },
+                                                              class: 'me-2'
+                = link_to t('views.bulletins.table.reject'), update_state_bulletin_path(bulletin, bulletin:, state_operation_key: :reject),
+                                                              data: { 'turbo-method': :patch },
+                                                              class: 'me-2'
+                = link_to t('views.bulletins.table.archive'), update_state_bulletin_path(bulletin, bulletin:, state_operation_key: :archive),
+                                                              data: { 'turbo-method': :patch },
+                                                              class: 'text-danger'
