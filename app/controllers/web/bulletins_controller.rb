@@ -16,7 +16,7 @@ module Web
     end
 
     def create
-      @bulletin = Bulletin.create(bulletin_params)
+      @bulletin = Bulletin.new(bulletin_params)
       authorize @bulletin
 
       if @bulletin.save

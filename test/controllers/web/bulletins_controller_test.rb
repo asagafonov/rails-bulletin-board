@@ -5,13 +5,17 @@ require 'test_helper'
 class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:bob)
+    sign_in @user
     @category = categories(:tech)
 
     @params = {
-      title: 'iPhone 13 Pro Max',
-      description: 'Almost new, barely scratched',
+      title: 'MacBook Air 13 M2',
+      description: '256 GB SSD, 8 GB RAM',
       category_id: @category.id,
-      user_id: @user.id,
+      user_id: @user.id
+    }
+
+    @attachments = {
       image: fixture_file_upload('phone.jpeg', 'image/jpeg')
     }
   end
@@ -27,7 +31,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create bulletin' do
-    post bulletins_url, params: { bulletin: @params }
+    post bulletins_url, params: { bulletin: @params.merge(@attachments) }
     bulletin = Bulletin.find_by(@params)
 
     assert { bulletin }
