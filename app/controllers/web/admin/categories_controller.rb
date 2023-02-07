@@ -48,7 +48,7 @@ module Web
         if @category.destroy
           redirect_to admin_categories_path, notice: t('admin.categories.destroy.success')
         else
-          redirect_to @category, alert: t('admin.categories.destroy.failure')
+          redirect_to admin_categories_path, alert: t('admin.categories.destroy.failure')
         end
       end
 

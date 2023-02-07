@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   scope module: :web do
     namespace :admin do
       resources :bulletins
-      resources :categories
+      resources :categories, except: :show
     end
 
     get 'admin/', to: 'admin/bulletins#moderation'

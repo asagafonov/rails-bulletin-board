@@ -19,9 +19,9 @@ h1.pb-4.border-bottom.h3 = t('views.my_profile')
             = link_to t('views.bulletins.table.show'), bulletin_path(bulletin), class: 'me-2'
             = link_to t('views.bulletins.table.edit'), edit_bulletin_path(bulletin), class: 'me-2'
             - if bulletin.draft?
-              = link_to t('views.bulletins.table.to_moderate'), update_state_bulletin_path(bulletin, bulletin:, state_operation_key: :to_moderation),
+              = link_to t('views.bulletins.table.to_moderate'), update_state_bulletin_path(bulletin, state_operation_key: :to_moderation),
                                                                 data: { 'turbo-method': :patch },
                                                                 class: 'me-2'
-            = link_to t('views.bulletins.table.archive'), update_state_bulletin_path(bulletin, bulletin:, state_operation_key: :archive),
+            = link_to t('views.bulletins.table.archive'), update_state_bulletin_path(bulletin, state_operation_key: :archive),
                                                           data: { 'turbo-method': :patch },
                                                           class: 'text-danger'

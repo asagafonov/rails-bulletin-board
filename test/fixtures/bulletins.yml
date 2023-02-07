@@ -5,9 +5,11 @@ iphone:
   description: Slightly scratched
   category: tech
   user: bob
+  state: draft
 
 pasta:
   title: Fuzilli with pesto
   description: Ready to eat
   category: food
   user: chuck
+  state: under_moderation
