@@ -1,9 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  description: MyText
+iphone:
+  title: iPhone 13 Pro Max
+  description: Slightly scratched
+  category: tech
+  user: bob
 
-two:
-  title: MyString
-  description: MyText
+pasta:
+  title: Fuzilli with pesto
+  description: Ready to eat
+  category: food
+  user: chuck
