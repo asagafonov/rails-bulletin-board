@@ -45,6 +45,12 @@ ru:
     add_bulletin_full: Добавить объявление
     my_profile: Мои объявления
 
+    pagination:
+      first: Первая
+      last: Последняя
+      next: Следующая
+      previous: Предыдущая
+
     auth:
       login:
         github: Войти через GitHub
