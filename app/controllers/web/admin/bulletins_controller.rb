@@ -10,7 +10,7 @@ module Web
       end
 
       def moderation
-        @bulletins_on_moderation = Bulletin.includes(:user).under_moderation.by_creation_date_desc
+        @bulletins_on_moderation = Bulletin.under_moderation.by_creation_date_desc
         @page_type = :bulletins_on_moderation
       end
 
