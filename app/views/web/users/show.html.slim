@@ -1,6 +1,7 @@
 h1.pb-4.border-bottom.h3 = t('views.my_profile')
 = link_to t('views.add_bulletin_full'), new_bulletin_path
 
+= render 'layouts/partials/search_form', query: @query, url: user_path, admin_space: true
 .row.mt-2
   table.table.table-borderless
     thead

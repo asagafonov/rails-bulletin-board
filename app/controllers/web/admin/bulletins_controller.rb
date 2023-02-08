@@ -4,7 +4,8 @@ module Web
   module Admin
     class BulletinsController < ApplicationController
       def index
-        @bulletins = Bulletin.includes(:user).by_creation_date_desc
+        @query = Bulletin.ransack(params[:query])
+        @bulletins = @query.result.by_creation_date_desc
         @page_type = :bulletins
       end
 

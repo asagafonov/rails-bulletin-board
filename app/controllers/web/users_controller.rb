@@ -4,7 +4,8 @@ module Web
   class UsersController < ApplicationController
     def show
       @user = User.find_by(params[:id])
-      @user_bulletins = @user.bulletins.by_creation_date_desc
+      @query = Bulletin.ransack(params[:query])
+      @user_bulletins = @query.result.where(user_id: @user.id).by_creation_date_desc
     end
   end
 end
