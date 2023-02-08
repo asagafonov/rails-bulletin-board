@@ -35,3 +35,12 @@ ru:
     categories:
       submit: Создать категорию
       submit_edit: Обновить категорию
+
+    search:
+      submit: 'Искать'
+      reset: 'Сброс'
+
+    labels:
+      title_cont: Поиск по названию
+      category_id_eq: Поиск по категории
+      state_eq: Поиск по состоянию

@@ -1,0 +1,15 @@
+= search_form_for(query, url:) do |f|
+  .row.mb-2.d-flex.justify-content-between.p-4.bg-light
+    .col-5.p-0
+      = f.input :title_cont, label: false
+      small.form-text.text-muted = t('simple_form.labels.title_cont')
+    .col-4.p-0
+      - if admin_space
+        = f.input :state_eq, as: :select, collection: Bulletin.aasm.states.map(&:name), label: false
+        small.form-text.text-muted = t('simple_form.labels.state_eq')
+      - else
+        = f.input :category_id_eq, as: :select, collection: Category.all, label: false
+        small.form-text.text-muted = t('simple_form.labels.category_id_eq')
+    .col-2.p-0
+      = f.submit t('simple_form.search.submit'), class: 'btn btn-primary me-2'
+      = link_to t('simple_form.search.reset'), url_for, class: 'btn btn-secondary'
