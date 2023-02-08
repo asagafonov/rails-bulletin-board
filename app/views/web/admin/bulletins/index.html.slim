@@ -23,3 +23,5 @@
                   = link_to t('views.bulletins.table.archive'), update_state_bulletin_path(bulletin, state_operation_key: :archive),
                                                                 data: { 'turbo-method': :patch },
                                                                 class: 'text-danger'
+
+    = paginate @bulletins

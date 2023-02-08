@@ -5,7 +5,7 @@ module Web
     class BulletinsController < ApplicationController
       def index
         @query = Bulletin.ransack(params[:query])
-        @bulletins = @query.result.by_creation_date_desc
+        @bulletins = @query.result.by_creation_date_desc.page(params[:page])
         @page_type = :bulletins
       end
 

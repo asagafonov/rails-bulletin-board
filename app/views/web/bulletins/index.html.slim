@@ -16,3 +16,5 @@ h1.pb-4.border-bottom.h3 = t('views.bulletins.title')
               .p-4
                 h5.card-title.text-dark = bulletin.title
                 h6.card-subtitle.text-muted = time_ago_in_words(bulletin.created_at)
+
+      = pagingate @bulletins

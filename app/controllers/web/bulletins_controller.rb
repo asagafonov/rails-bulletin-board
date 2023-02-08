@@ -4,7 +4,7 @@ module Web
   class BulletinsController < ApplicationController
     def index
       @query = Bulletin.ransack(params[:query])
-      @bulletins = @query.result.already_published.by_creation_date_desc
+      @bulletins = @query.result.already_published.by_creation_date_desc.page(params[:page])
     end
 
     def show
