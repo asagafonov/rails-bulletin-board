@@ -2,4 +2,4 @@ li.page-item
   - if page.current?
     = link_to page, url, { class: 'page-link active current text-white' }
   - else
-    = link_to page, url, { remote: remote, rel: page.rel, class: 'page-link' }
+    = link_to page, url, { remote:, rel: page.rel, class: 'page-link' }
