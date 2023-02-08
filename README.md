@@ -30,7 +30,7 @@ Seed database
 rails db:seed
 ```
 
-Add migration to make yourself admin (if you like)
+Add migration to make yourself admin (if you like). Don't forget to login first or create database user entry manually.
 ```
 class AddAdmins < ActiveRecord::Migration[7.0]
   def change
