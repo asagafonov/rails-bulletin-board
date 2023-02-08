@@ -30,6 +30,16 @@ Seed database
 rails db:seed
 ```
 
+Add migration to make yourself admin (if you like)
+```
+class AddAdmins < ActiveRecord::Migration[7.0]
+  def change
+    User.find_by(email: 'your email here').update(admin: true)
+  end
+end
+
+```
+
 Run migrations
 ```
 rails migrate
