@@ -30,5 +30,7 @@ module RailsProject65
     # config.eager_load_paths << Rails.root.join("extras")
     config.i18n.available_locales = %i[ru en]
     config.i18n.default_locale = :ru
+
+    config.active_storage.service = :yandex
   end
 end
