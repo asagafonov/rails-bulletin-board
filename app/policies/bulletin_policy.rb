@@ -28,4 +28,8 @@ class BulletinPolicy < ApplicationPolicy
   def destroy?
     record.user_id == user&.id || user&.admin?
   end
+
+  def moderation?
+    user&.admin?
+  end
 end
