@@ -7,6 +7,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     @user = users(:bob)
     sign_in @user
     @category = categories(:tech)
+    @bulletin = bulletins(:iphone)
 
     @params = {
       title: 'MacBook Air 13 M2',
@@ -37,5 +38,20 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     assert { bulletin }
     assert { bulletin.image.attached? }
     assert_redirected_to bulletin_path(bulletin)
+  end
+
+  test 'should update bulletin' do
+    patch bulletin_url(@bulletin), params: { bulletin: @params.merge(@attachments) }
+
+    @bulletin.reload
+
+    assert { @bulletin.title == @params[:title] }
+    assert_redirected_to bulletin_url(@bulletin)
+  end
+
+  test "should not update another user's bulletin" do
+    assert_raises Pundit::NotAuthorizedError do
+      patch bulletin_url(bulletins(:pasta)), params: { bulletin: @params }
+    end
   end
 end
