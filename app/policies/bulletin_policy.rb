@@ -32,4 +32,20 @@ class BulletinPolicy < ApplicationPolicy
   def moderation?
     user&.admin?
   end
+
+  def to_moderation?
+    record.user_id == user&.id
+  end
+
+  def publish?
+    user&.admin?
+  end
+
+  def reject?
+    user&.admin?
+  end
+
+  def archive?
+    record.user_id == user&.id || user&.admin?
+  end
 end

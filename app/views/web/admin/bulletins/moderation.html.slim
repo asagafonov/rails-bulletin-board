@@ -15,12 +15,12 @@
               td = bulletin.title
               td = time_ago_in_words(bulletin.created_at)
               td
-                = link_to t('views.bulletins.table.publish'), publish_bulletin_path(bulletin, fallback_url: admin_path),
+                = link_to t('views.bulletins.table.publish'), publish_admin_bulletin_path(bulletin, fallback_url: admin_path),
                                                               data: { 'turbo-method': :patch },
                                                               class: 'me-2'
-                = link_to t('views.bulletins.table.reject'), reject_bulletin_path(bulletin, fallback_url: admin_path),
+                = link_to t('views.bulletins.table.reject'), reject_admin_bulletin_path(bulletin, fallback_url: admin_path),
                                                              data: { 'turbo-method': :patch },
                                                              class: 'me-2'
-                = link_to t('views.bulletins.table.archive'), archive_bulletin_path(bulletin, fallback_url: admin_path),
+                = link_to t('views.bulletins.table.archive'), archive_admin_bulletin_path(bulletin, fallback_url: admin_path),
                                                               data: { 'turbo-method': :patch },
                                                               class: 'text-danger'
