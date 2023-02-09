@@ -54,6 +54,12 @@ module Web
           redirect_to url, alert: t('bulletins.state.state_changed.failure')
         end
       end
+
+      private
+
+      def find_bulletin
+        Bulletin.find(params[:id])
+      end
     end
   end
 end
