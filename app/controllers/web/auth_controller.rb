@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/AbcSize
+
 module Web
   class AuthController < ApplicationController
     def callback
-      name = auth[:name]
+      name = auth[:name] || nil
       email = auth[:email]
       user = User.find_by(email:)
 
@@ -14,12 +16,12 @@ module Web
         session[:user_id] = new_user.id
       end
 
-      redirect_to root_path
+      redirect_to root_path, notice: t('views.auth.actions.login.success')
     end
 
     def logout
       session[:user_id] = nil
-      redirect_to root_path, notice: 'Logout successful'
+      redirect_to root_path, notice: t('views.auth.actions.logout.success')
     end
 
     private
@@ -30,3 +32,5 @@ module Web
     end
   end
 end
+
+# rubocop:enable Metrics/AbcSize

@@ -70,6 +70,11 @@ ru:
         github: Войти через GitHub
       logout: Выйти
       admin: Админка
+      actions:
+        login:
+          success: Вы вошли в аккаунт
+        logout:
+          success: Вы вышли из своего аккаунта
 
     bulletins:
       title: Объявления

@@ -21,7 +21,7 @@ User.create(
     state: %w[draft under_moderation published rejected archived].sample
   )
   bulletin.image.attach(
-    io: File.open(File.join(Rails.root, 'app/assets/images/template_photo.png')),
+    io: File.open(Rails.root.join('app/assets/images/template_photo.png')),
     filename: 'template_photo.png',
     content_type: 'image/png'
   )
