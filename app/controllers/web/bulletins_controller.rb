@@ -19,6 +19,7 @@ module Web
     def create
       @bulletin = Bulletin.new(bulletin_params)
       authorize @bulletin
+      @bulletin.user_id = current_user.id
 
       if @bulletin.save
         redirect_to @bulletin, notice: t('bulletins.create.success')
@@ -76,7 +77,7 @@ module Web
     end
 
     def bulletin_params
-      params.require(:bulletin).permit(:category_id, :description, :image, :title, :user_id)
+      params.require(:bulletin).permit(:category_id, :description, :image, :title)
     end
   end
 end

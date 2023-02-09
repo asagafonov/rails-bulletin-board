@@ -4,7 +4,6 @@
   = f.input :title
   = f.input :description
   = f.input :category_id, required: true, as: :select, collection: Category.all
-  = f.input :user_id, as: :hidden, input_html: { value: current_user&.id }
 
   - if type == :edit
     = image_tag rails_blob_path(bulletin.image), class: 'x-width-120 py-4'
