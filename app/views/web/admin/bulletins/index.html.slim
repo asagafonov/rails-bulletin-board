@@ -20,9 +20,7 @@
               td
                 = link_to t('views.bulletins.table.show'), bulletin_path(bulletin), class: 'me-2'
                 - unless bulletin.archived?
-                  = link_to t('views.bulletins.table.archive'), update_state_bulletin_path(bulletin,
-                                                                  state_operation_key: :archive,
-                                                                  fallback_url: admin_bulletins_path),
+                  = link_to t('views.bulletins.table.archive'), archive_bulletin_path(bulletin, fallback_url: admin_bulletins_path),
                                                                 data: { 'turbo-method': :patch },
                                                                 class: 'text-danger'
 

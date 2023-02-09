@@ -43,11 +43,41 @@ module Web
       end
     end
 
-    def update_state
+    def to_moderation
       @bulletin = find_bulletin
 
-      if BulletinStateOperation.new.call(bulletin: @bulletin, key: params[:state_operation_key])
-        redirect_to params[:fallback_url], notice: t('bulletins.state.state_changed.success')
+      if @bulletin.to_moderation!
+        redirect_to params[:fallback_url], notice: t('bulletins.state.state_changed.to_moderation.success')
+      else
+        redirect_to params[:fallback_url], alert: t('bulletins.state.state_changed.failure')
+      end
+    end
+
+    def publish
+      @bulletin = find_bulletin
+
+      if @bulletin.publish!
+        redirect_to params[:fallback_url], notice: t('bulletins.state.state_changed.publish.success')
+      else
+        redirect_to params[:fallback_url], alert: t('bulletins.state.state_changed.failure')
+      end
+    end
+
+    def reject
+      @bulletin = find_bulletin
+
+      if @bulletin.reject!
+        redirect_to params[:fallback_url], notice: t('bulletins.state.state_changed.reject.success')
+      else
+        redirect_to params[:fallback_url], alert: t('bulletins.state.state_changed.failure')
+      end
+    end
+
+    def archive
+      @bulletin = find_bulletin
+
+      if @bulletin.archive!
+        redirect_to params[:fallback_url], notice: t('bulletins.state.state_changed.archive.success')
       else
         redirect_to params[:fallback_url], alert: t('bulletins.state.state_changed.failure')
       end

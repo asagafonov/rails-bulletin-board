@@ -7,16 +7,18 @@ Rails.application.routes.draw do
       resources :categories, except: :show
     end
 
-    get 'admin/', to: 'admin/bulletins#moderation'
+    get '/admin', to: 'admin/bulletins#moderation'
+    get '/profile', to: 'users#show'
 
     post 'auth/:provider', to: 'auth#request', as: :auth_request
     get 'auth/:provider/callback', to: 'auth#callback', as: :callback_auth
     get 'auth/logout', to: 'auth#logout'
 
-    resources :users, only: :show, path: 'profile'
-
     resources :bulletins, except: :destroy do
-      patch 'update_state', on: :member
+      patch 'to_moderation', on: :member
+      patch 'publish', on: :member
+      patch 'reject', on: :member
+      patch 'archive', on: :member
     end
   end
 
