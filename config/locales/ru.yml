@@ -73,6 +73,7 @@ ru:
       actions:
         login:
           success: Вы вошли в аккаунт
+          failure: Во время авторизации произошла ошибка
         logout:
           success: Вы вышли из своего аккаунта
 
