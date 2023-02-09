@@ -38,6 +38,13 @@ ru:
       published: Опубликовано
       rejected: Отклонено
       archived: В архиве
+      state_changed:
+        success: Состояние изменено
+        failure: При обновлении состояния произошла ошибка
+    create:
+      success: Объявление создано
+    update:
+      success: Объявление обновлено
 
   views:
     main_page: Доска объявлений
@@ -92,3 +99,12 @@ ru:
       bulletins_on_moderation: Объявления на модерации
       bulletins: Все объявления
       categories: Все категории
+
+    categories:
+      create:
+        success: Категория создана
+      update:
+        success: Категория обновлена
+      destroy:
+        success: Категория удалена
+        failure: Удаление не сработало
