@@ -8,6 +8,6 @@
 
   - if type == :edit
     = image_tag rails_blob_path(bulletin.image), class: 'x-width-120 py-4'
-  = f.input :image, as: :file, required: true, input_html: { class: 'form-control mb-4' }
+  = f.input :image, as: :file, required: type != :edit, input_html: { class: 'form-control mb-4' }
 
-  = f.submit t('simple_form.bulletins.submit'), class: 'btn btn-primary'
+  = f.submit type == :edit ? t('simple_form.bulletins.submit_edit') : t('simple_form.bulletins.submit'), class: 'btn btn-primary'
