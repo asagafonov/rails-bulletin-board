@@ -18,9 +18,11 @@
               td = t("bulletins.state.#{bulletin.state}")
               td = time_ago_in_words(bulletin.created_at)
               td
-                = link_to t('views.bulletins.table.show'), admin_bulletin_path(bulletin), class: 'me-2'
+                = link_to t('views.bulletins.table.show'), bulletin_path(bulletin), class: 'me-2'
                 - unless bulletin.archived?
-                  = link_to t('views.bulletins.table.archive'), update_state_bulletin_path(bulletin, state_operation_key: :archive),
+                  = link_to t('views.bulletins.table.archive'), update_state_bulletin_path(bulletin,
+                                                                  state_operation_key: :archive,
+                                                                  fallback_url: admin_bulletins_path),
                                                                 data: { 'turbo-method': :patch },
                                                                 class: 'text-danger'
 

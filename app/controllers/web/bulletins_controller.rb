@@ -43,22 +43,14 @@ module Web
       end
     end
 
-    def destroy
-      @bulletin = find_bulletin
-      authorize @bulletin
-
-      if @bulletin.destroy
-        redirect_to bulletins_path, notice: t('bulletins.destroy.success')
-      else
-        redirect_to @bulletin, alert: t('bulletins.destroy.failure')
-      end
-    end
-
     def update_state
       @bulletin = find_bulletin
 
-      BulletinStateOperation.new.call(bulletin: @bulletin, key: params[:state_operation_key])
-      redirect_to user_path(current_user)
+      if BulletinStateOperation.new.call(bulletin: @bulletin, key: params[:state_operation_key])
+        redirect_to params[:fallback_url], notice: t('bulletins.state.state_changed.success')
+      else
+        redirect_to params[:fallback_url], alert: t('bulletins.state.state_changed.failure')
+      end
     end
 
     private

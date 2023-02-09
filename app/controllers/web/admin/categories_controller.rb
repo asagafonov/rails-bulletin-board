@@ -19,7 +19,7 @@ module Web
         authorize @category
 
         if @category.save
-          redirect_to admin_categories_path, notice: t('admin.categories.success')
+          redirect_to admin_categories_path, notice: t('admin.categories.create.success')
         else
           render :new, status: :unprocessable_entity
         end

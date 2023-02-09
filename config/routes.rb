@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   scope module: :web do
     namespace :admin do
-      resources :bulletins
+      resources :bulletins, only: :index
       resources :categories, except: :show
     end
 
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
     resources :users, only: :show, path: 'profile'
 
-    resources :bulletins do
+    resources :bulletins, except: :destroy do
       patch 'update_state', on: :member
     end
   end
