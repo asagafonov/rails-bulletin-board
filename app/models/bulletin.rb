@@ -33,6 +33,7 @@ class Bulletin < ApplicationRecord
 
   validates :title, presence: true, length: { maximum: 50 }
   validates :description, presence: true, length: { maximum: 1000 }
+  validates :user_id, :category_id, presence: true
   validates :image, attached: true,
                     content_type: %i[png jpg jpeg],
                     size: { less_than: 5.megabytes }
