@@ -50,8 +50,12 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should not update another user's bulletin" do
-    assert_raises Pundit::NotAuthorizedError do
-      patch bulletin_url(bulletins(:pasta)), params: { bulletin: @params }
-    end
+    patch bulletin_url(bulletins(:pasta)), params: { bulletin: @params }
+
+    @bulletin.reload
+
+    assert { @bulletin.title != @params[:title] }
+
+    assert_redirected_to root_path
   end
 end

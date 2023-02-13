@@ -3,10 +3,10 @@
 
   = f.input :title
   = f.input :description
-  = f.input :category_id, required: true, as: :select, collection: Category.all
+  = f.association :category, as: :select
 
   - if type == :edit
-    = image_tag rails_blob_path(bulletin.image), class: 'x-width-120 py-4'
+    = image_tag rails_blob_path(bulletin.image), class: 'w-25 py-4'
   = f.input :image, as: :file, required: type != :edit, input_html: { class: 'form-control mb-4' }
 
   = f.submit type == :edit ? t('simple_form.bulletins.submit_edit') : t('simple_form.bulletins.submit'), class: 'btn btn-primary'
