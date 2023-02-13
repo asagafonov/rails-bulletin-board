@@ -1,5 +1,10 @@
 h1.h3 = @bulletin.title
-p.pb-4.mb-4.border-bottom = "#{t("views.bulletins.published_by")} #{@bulletin.user.name}"
+- if @bulletin.published?
+  p.pb-4.mb-4.border-bottom = "#{t("views.bulletins.published_by")} #{@bulletin.user.name}"
+- else
+  p.pb-4.mb-4.border-bottom
+    span = "#{t("views.bulletins.publish_state")}: "
+    span.text-danger = t("bulletins.state.#{@bulletin.state}").downcase
 
 .d-flex.border-bottom.pb-4
   .w-50
