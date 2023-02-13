@@ -9,6 +9,7 @@ module Web
 
     def show
       @bulletin = find_bulletin
+      authorize @bulletin
     end
 
     def new
