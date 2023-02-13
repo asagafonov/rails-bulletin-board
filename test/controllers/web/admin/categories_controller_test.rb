@@ -40,19 +40,42 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
     assert { @category.name == 'Edited name' }
   end
 
-  test 'user should not access categories' do
+  test 'common user should not access categories' do
     sign_in @user
 
-    assert_raises Pundit::NotAuthorizedError do
-      get admin_categories_url
-    end
+    get admin_categories_url
 
-    assert_raises Pundit::NotAuthorizedError do
-      post admin_categories_url, params: { category: @params }
-    end
+    assert_redirected_to root_path
+  end
 
-    assert_raises Pundit::NotAuthorizedError do
-      patch admin_category_url(@category), params: { category: { name: 'Edited name' } }
-    end
+  test 'common user should not create categories' do
+    sign_in @user
+
+    post admin_categories_url, params: { category: @params }
+
+    category = Category.find_by(@params)
+
+    assert { !category }
+    assert_redirected_to root_path
+  end
+
+  test 'common user should not update categories' do
+    sign_in @user
+
+    patch admin_category_url(@category), params: { category: { name: 'Edited name' } }
+
+    @category.reload
+
+    assert { @category.name != 'Edited name' }
+    assert_redirected_to root_path
+  end
+
+  test 'common user should not destroy categories' do
+    sign_in @user
+
+    delete admin_category_url(@category)
+
+    assert { @category }
+    assert_redirected_to root_path
   end
 end
