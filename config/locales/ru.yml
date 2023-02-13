@@ -53,6 +53,9 @@ ru:
     update:
       success: Объявление обновлено
 
+  categories:
+    delete_restriction_error: Невозможно удалить категорию, в которой есть объявления
+
   views:
     main_page: Доска объявлений
     add_bulletin: Добавить
