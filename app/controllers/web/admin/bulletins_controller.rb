@@ -4,7 +4,7 @@ module Web
   module Admin
     class BulletinsController < ApplicationController
       def index
-        authorize Bulletin
+        authorize Bulletin, :moderation?
         @query = Bulletin.ransack(params[:query])
         @bulletins = @query.result.by_creation_date_desc.page(params[:page])
         @page_type = :bulletins
