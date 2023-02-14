@@ -35,10 +35,12 @@ module Web
       def archive
         @bulletin = find_bulletin
 
+        url = params[:fallback_url] || admin_root_path
+
         if @bulletin.archive!
-          redirect_to params[:fallback_url], notice: t('bulletins.state.state_changed.archive.success')
+          redirect_to url, notice: t('bulletins.state.state_changed.archive.success')
         else
-          redirect_to params[:fallback_url], alert: t('bulletins.state.state_changed.failure')
+          redirect_to url, alert: t('bulletins.state.state_changed.failure')
         end
       end
 
