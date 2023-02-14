@@ -8,17 +8,17 @@ Rails.application.routes.draw do
         patch 'reject', on: :member
         patch 'archive', on: :member
       end
-      resources :categories, except: :show
+      resources :categories, only: %i[index new create edit update destroy]
+      root 'bulletins#moderation'
     end
 
-    get '/admin', to: 'admin/bulletins#moderation'
-    get '/profile', to: 'users#show'
+    resource :user, only: :show, path: '/profile', as: :profile
 
     post 'auth/:provider', to: 'auth#request', as: :auth_request
     get 'auth/:provider/callback', to: 'auth#callback', as: :callback_auth
     get 'auth/logout', to: 'auth#logout'
 
-    resources :bulletins, except: :destroy do
+    resources :bulletins, only: %i[index show new create edit update] do
       patch 'to_moderation', on: :member
       patch 'archive', on: :member
     end
