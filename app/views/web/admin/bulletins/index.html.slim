@@ -1,8 +1,8 @@
 .row
-  = render 'web/admin/partials/admin_panel', page_type: @page_type
+  = render 'web/admin/admin_panel', page_type: :bulletins
   .col-md-9
     h1.pb-4.mb-4.border-bottom.h3 = t('admin.panel.bulletins')
-    = render 'layouts/partials/search_form', query: @query, url: admin_bulletins_path, admin_space: true
+    = render 'shared/search_form', query: @query, url: admin_bulletins_path, admin_space: true
     .row.mt-2
       table.table.table-borderless
         thead
@@ -15,11 +15,11 @@
           - @bulletins.each do |bulletin|
             tr
               td = bulletin.title
-              td = t("bulletins.state.#{bulletin.state}")
+              td = bulletin.aasm.human_state
               td = time_ago_in_words(bulletin.created_at)
               td
                 = link_to t('views.bulletins.table.show'), bulletin_path(bulletin), class: 'me-2'
-                - unless bulletin.archived?
+                - if bulletin.may_archive?
                   = link_to t('views.bulletins.table.archive'), archive_admin_bulletin_path(bulletin, fallback_url: admin_bulletins_path),
                                                                 data: { 'turbo-method': :patch },
                                                                 class: 'text-danger'

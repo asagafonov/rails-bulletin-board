@@ -2,7 +2,7 @@ h1.pb-4.border-bottom.h3 = t('views.bulletins.title')
 
 .container
   .row
-    = render 'layouts/partials/search_form', query: @query, url: bulletins_path, admin_space: false
+    = render 'shared/search_form', query: @query, url: bulletins_path, admin_space: false
     - if @bulletins.empty?
       .d-flex.my-4.p-0.align-items-center.justify-content-between
         h5.p-0 = t('views.bulletins.empty')

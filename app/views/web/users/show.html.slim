@@ -1,7 +1,7 @@
 h1.pb-4.border-bottom.h3 = t('views.my_profile')
 = link_to t('views.add_bulletin_full'), new_bulletin_path
 
-= render 'layouts/partials/search_form', query: @query, url: profile_path, admin_space: true
+= render 'shared/search_form', query: @query, url: profile_path, admin_space: true
 .row.mt-2
   table.table.table-borderless
     thead
@@ -14,17 +14,17 @@ h1.pb-4.border-bottom.h3 = t('views.my_profile')
       - @user_bulletins.each do |bulletin|
         tr
           td = bulletin.title
-          td = t("bulletins.state.#{bulletin.state}")
+          td = bulletin.aasm.human_state
           td = time_ago_in_words(bulletin.created_at)
           td
             = link_to t('views.bulletins.table.show'), bulletin_path(bulletin), class: 'me-2'
             = link_to t('views.bulletins.table.edit'), edit_bulletin_path(bulletin), class: 'me-2'
-            - if bulletin.draft?
-              = link_to t('views.bulletins.table.to_moderate'), to_moderation_bulletin_path(bulletin, fallback_url: profile_path),
+            - if bulletin.may_to_moderation?
+              = link_to t('views.bulletins.table.to_moderate'), to_moderation_bulletin_path(bulletin),
                                                                 data: { 'turbo-method': :patch },
                                                                 class: 'me-2'
-            - unless bulletin.archived?
-              = link_to t('views.bulletins.table.archive'), archive_bulletin_path(bulletin, fallback_url: profile_path),
+            - if bulletin.may_archive?
+              = link_to t('views.bulletins.table.archive'), archive_bulletin_path(bulletin),
                                                             data: { 'turbo-method': :patch },
                                                             class: 'text-danger'
 
