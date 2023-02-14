@@ -15,36 +15,30 @@ module Web
       def publish
         @bulletin = find_bulletin
 
-        url = params[:fallback_url] || admin_bulletins_path
-
         if @bulletin.publish!
-          redirect_to url, notice: t('bulletins.state.state_changed.publish.success')
+          redirect_to admin_root_path, notice: t('bulletins.state.state_changed.publish.success')
         else
-          redirect_to url, alert: t('bulletins.state.state_changed.failure')
+          redirect_to admin_root_path, alert: t('bulletins.state.state_changed.failure')
         end
       end
 
       def reject
         @bulletin = find_bulletin
 
-        url = params[:fallback_url] || admin_bulletins_path
-
         if @bulletin.reject!
-          redirect_to url, notice: t('bulletins.state.state_changed.reject.success')
+          redirect_to admin_root_path, notice: t('bulletins.state.state_changed.reject.success')
         else
-          redirect_to url, alert: t('bulletins.state.state_changed.failure')
+          redirect_to admin_root_path, alert: t('bulletins.state.state_changed.failure')
         end
       end
 
       def archive
         @bulletin = find_bulletin
 
-        url = params[:fallback_url] || admin_bulletins_path
-
         if @bulletin.archive!
-          redirect_to url, notice: t('bulletins.state.state_changed.archive.success')
+          redirect_to params[:fallback_url], notice: t('bulletins.state.state_changed.archive.success')
         else
-          redirect_to url, alert: t('bulletins.state.state_changed.failure')
+          redirect_to params[:fallback_url], alert: t('bulletins.state.state_changed.failure')
         end
       end
 
