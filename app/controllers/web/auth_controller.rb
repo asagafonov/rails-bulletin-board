@@ -2,6 +2,8 @@
 
 module Web
   class AuthController < ApplicationController
+    include AuthHelper
+
     def callback
       name = auth[:name] || nil
       email = auth[:email]
@@ -14,21 +16,18 @@ module Web
     end
 
     def logout
-      session[:user_id] = nil
+      end_user_session
       redirect_to root_path, notice: t('views.auth.actions.logout.success')
     end
 
     private
 
     def add_user_to_session(name, email)
-      user = User.find_by(email:)
-
-      if user&.persisted?
-        session[:user_id] = user.id
-      else
-        new_user = User.create!(name:, email:)
-        session[:user_id] = new_user.id
+      user = User.find_or_create_by(email:) do |u|
+        u.name = name
       end
+
+      start_user_session(user)
     end
 
     def auth
