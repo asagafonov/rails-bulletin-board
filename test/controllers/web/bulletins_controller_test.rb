@@ -12,8 +12,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     @params = {
       title: 'MacBook Air 13 M2',
       description: '256 GB SSD, 8 GB RAM',
-      category_id: @category.id,
-      user_id: @user.id
+      category_id: @category.id
     }
 
     @attachments = {
