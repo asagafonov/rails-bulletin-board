@@ -1,4 +1,9 @@
 iphone_picture:
-  name: iphone
-  record: bob (User)
+  name: image
+  record: iphone (Bulletin)
   blob: iphone_picture_blob
+
+pasta_picture:
+  name: image
+  record: pasta (Bulletin)
+  blob: pasta_picture_blob
