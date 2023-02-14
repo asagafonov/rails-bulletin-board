@@ -12,8 +12,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     @params = {
       title: 'MacBook Air 13 M2',
       description: '256 GB SSD, 8 GB RAM',
-      category_id: @category.id,
-      user_id: @user.id
+      category_id: @category.id
     }
 
     @attachments = {
@@ -28,6 +27,11 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should load new' do
     get new_bulletin_url
+    assert_response :success
+  end
+
+  test 'should load edit' do
+    get edit_bulletin_url(@bulletin)
     assert_response :success
   end
 
@@ -49,7 +53,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to bulletin_url(@bulletin)
   end
 
-  test "should not update another user's bulletin" do
+  test 'should not update another user\'s bulletin' do
     patch bulletin_url(bulletins(:pasta)), params: { bulletin: @params }
 
     @bulletin.reload
@@ -57,5 +61,23 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     assert { @bulletin.title != @params[:title] }
 
     assert_redirected_to root_path
+  end
+
+  test 'user should send to moderation' do
+    patch to_moderation_bulletin_url(@bulletin)
+
+    @bulletin.reload
+
+    assert { @bulletin.state == 'under_moderation' }
+    assert_redirected_to profile_url
+  end
+
+  test 'user should archive' do
+    patch archive_bulletin_url(@bulletin)
+
+    @bulletin.reload
+
+    assert { @bulletin.state == 'archived' }
+    assert_redirected_to profile_url
   end
 end

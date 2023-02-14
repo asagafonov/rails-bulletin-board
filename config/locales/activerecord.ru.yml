@@ -6,5 +6,10 @@ ru:
         description: Описание
         category: Категория
         image: Изображение
+        state/draft: Черновик
+        state/under_moderation: На модерации
+        state/published: Опубликовано
+        state/rejected: Отклонено
+        state/archived: В архиве
       category:
         name: Название

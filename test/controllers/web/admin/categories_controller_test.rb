@@ -29,15 +29,17 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
     category = Category.find_by(@params)
 
     assert { category }
+    assert_redirected_to admin_categories_url
   end
 
-  test 'admin should edit category' do
+  test 'admin should update category' do
     sign_in @admin
 
     patch admin_category_url(@category), params: { category: { name: 'Edited name' } }
     @category.reload
 
     assert { @category.name == 'Edited name' }
+    assert_redirected_to admin_categories_url
   end
 
   test 'admin should not be able to destroy not-empty categories' do
@@ -85,5 +87,37 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
 
     assert { @category }
     assert_redirected_to root_path
+  end
+
+  test 'admin should get new' do
+    sign_in @admin
+
+    get new_admin_category_url
+
+    assert_response :success
+  end
+
+  test 'common user should not get new' do
+    sign_in @user
+
+    get new_admin_category_url
+
+    assert_redirected_to root_url
+  end
+
+  test 'admin should get edit' do
+    sign_in @admin
+
+    get edit_admin_category_url(@category)
+
+    assert_response :success
+  end
+
+  test 'common user should not get edit' do
+    sign_in @user
+
+    get edit_admin_category_url(@category)
+
+    assert_redirected_to root_url
   end
 end

@@ -8,7 +8,7 @@ class Web::AuthControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
   end
 
-  test 'create' do
+  test 'should log in' do
     auth_hash = {
       provider: 'github',
       uid: '12345',
@@ -27,5 +27,13 @@ class Web::AuthControllerTest < ActionDispatch::IntegrationTest
 
     assert user
     assert signed_in?
+  end
+
+  test 'should log out' do
+    sign_in users(:bob)
+
+    assert signed_in?
+    get auth_logout_url
+    assert_not signed_in?
   end
 end

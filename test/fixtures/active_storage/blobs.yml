@@ -1,2 +1,12 @@
-iphone_picture_blob: <%= ActiveStorage::FixtureSet.blob filename: "phone.jpeg", service_name: "test_fixtures" %>
+iphone_picture_blob: <%= ActiveStorage::FixtureSet.blob(
+  filename: 'phone.jpeg',
+  content_type: 'image/jpeg',
+  service_name: 'test_fixtures'
+) %>
+
+pasta_picture_blob: <%= ActiveStorage::FixtureSet.blob(
+  filename: 'fuzilli.png',
+  content_type: 'image/png',
+  service_name: 'test_fixtures'
+) %>
   

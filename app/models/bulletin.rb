@@ -7,7 +7,7 @@ class Bulletin < ApplicationRecord
   belongs_to :user
   belongs_to :category
 
-  aasm column: :state do
+  aasm column: :state, whiny_transitions: false do
     state :draft, initial: true
     state :under_moderation
     state :published
@@ -27,7 +27,7 @@ class Bulletin < ApplicationRecord
     end
 
     event :archive do
-      transitions to: :archived
+      transitions from: %i[draft under_moderation published rejected], to: :archived
     end
   end
 
@@ -37,7 +37,5 @@ class Bulletin < ApplicationRecord
                     content_type: %i[png jpg jpeg],
                     size: { less_than: 5.megabytes }
 
-  scope :under_moderation, -> { where(state: :under_moderation) }
-  scope :already_published, -> { where(state: :published) }
   scope :by_creation_date_desc, -> { order(created_at: :desc) }
 end

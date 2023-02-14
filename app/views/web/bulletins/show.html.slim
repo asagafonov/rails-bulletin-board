@@ -4,7 +4,7 @@ h1.h3 = @bulletin.title
 - else
   p.pb-4.mb-4.border-bottom
     span = "#{t("views.bulletins.publish_state")}: "
-    span.text-danger = t("bulletins.state.#{@bulletin.state}").downcase
+    span.text-danger = @bulletin.aasm.human_state.downcase
 
 .d-flex.border-bottom.pb-4
   .w-50

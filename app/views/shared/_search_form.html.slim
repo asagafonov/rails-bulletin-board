@@ -6,9 +6,9 @@
     .col-4.p-0
       - if admin_space
         = f.input :state_eq, as: :select,
-                             collection: Bulletin.aasm.states.map { |s| [s.name, t("bulletins.state.#{s.name}")] },
-                             label_method: :second,
-                             value_method: :first,
+                             collection: Bulletin.aasm.states,
+                             label_method: :human_name,
+                             value_method: :name,
                              label: false
         small.form-text.text-muted = t('simple_form.labels.state_eq')
       - else
