@@ -4,21 +4,16 @@ module Web
   module Admin
     class BulletinsController < ApplicationController
       def index
-        authorize Bulletin, :moderation?
         @query = Bulletin.ransack(params[:query])
         @bulletins = @query.result.by_creation_date_desc.page(params[:page])
-        @page_type = :bulletins
       end
 
       def moderation
-        authorize Bulletin
         @bulletins_on_moderation = Bulletin.under_moderation.by_creation_date_desc
-        @page_type = :bulletins_on_moderation
       end
 
       def publish
         @bulletin = find_bulletin
-        authorize @bulletin
 
         url = params[:fallback_url] || admin_bulletins_path
 
@@ -31,7 +26,6 @@ module Web
 
       def reject
         @bulletin = find_bulletin
-        authorize @bulletin
 
         url = params[:fallback_url] || admin_bulletins_path
 
@@ -44,7 +38,6 @@ module Web
 
       def archive
         @bulletin = find_bulletin
-        authorize @bulletin
 
         url = params[:fallback_url] || admin_bulletins_path
 

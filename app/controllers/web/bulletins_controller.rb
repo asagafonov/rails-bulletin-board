@@ -4,7 +4,7 @@ module Web
   class BulletinsController < ApplicationController
     def index
       @query = Bulletin.ransack(params[:query])
-      @bulletins = @query.result.already_published.by_creation_date_desc.page(params[:page])
+      @bulletins = @query.result.published.by_creation_date_desc.page(params[:page])
     end
 
     def show
@@ -13,14 +13,13 @@ module Web
     end
 
     def new
+      authorize Bulletin
       @bulletin = Bulletin.new
-      authorize @bulletin
     end
 
     def create
-      @bulletin = Bulletin.new(bulletin_params)
-      authorize @bulletin
-      @bulletin.user_id = current_user.id
+      authorize Bulletin
+      @bulletin = current_user.bulletins.new(bulletin_params)
 
       if @bulletin.save
         redirect_to @bulletin, notice: t('bulletins.create.success')
@@ -49,12 +48,10 @@ module Web
       @bulletin = find_bulletin
       authorize @bulletin
 
-      url = params[:fallback_url] || profile_path
-
       if @bulletin.to_moderation!
-        redirect_to url, notice: t('bulletins.state.state_changed.to_moderation.success')
+        redirect_to profile_path, notice: t('bulletins.state.state_changed.to_moderation.success')
       else
-        redirect_to url, alert: t('bulletins.state.state_changed.failure')
+        redirect_to profile_path, alert: t('bulletins.state.state_changed.failure')
       end
     end
 
@@ -62,12 +59,10 @@ module Web
       @bulletin = find_bulletin
       authorize @bulletin
 
-      url = params[:fallback_url] || profile_path
-
       if @bulletin.archive!
-        redirect_to url, notice: t('bulletins.state.state_changed.archive.success')
+        redirect_to profile_path, notice: t('bulletins.state.state_changed.archive.success')
       else
-        redirect_to url, alert: t('bulletins.state.state_changed.failure')
+        redirect_to profile_path, alert: t('bulletins.state.state_changed.failure')
       end
     end
 
