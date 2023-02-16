@@ -1,7 +1,3 @@
 - flash.each do |type, message|
-  - if type == 'notice'
-    .container.alert.alert-info.alert-dismissible.fade.show
-      span = message
-  - if type == 'alert'
-    .container.alert.alert-danger.alert-dismissible.fade.show
-      span = message
+  .container.alert(class="#{type == 'alert' ? 'alert-danger' : 'alert-info'}")
+    span = message
