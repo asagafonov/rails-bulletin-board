@@ -2,7 +2,7 @@
 
 module Web
   class AuthController < ApplicationController
-    include AuthHelper
+    include AuthConcern
 
     def callback
       name = auth[:name] || nil

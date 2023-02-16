@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module AuthHelper
+module AuthConcern
   def current_user
     User.find_by(id: session[:user_id]) if session[:user_id]
   end
@@ -10,6 +10,6 @@ module AuthHelper
   end
 
   def sign_out
-    session[:user_id] = nil
+    session.clear
   end
 end
