@@ -2,8 +2,8 @@
   ul.nav.flex-column.nav-pills
     li.nav-item
       = link_to t('admin.panel.bulletins_on_moderation'), admin_root_path,
-                                                          class: "nav-link #{page_type == :bulletins_on_moderation ? "active" : "link-dark"}"
+                                                          class: class_names('nav-link', { active: page_type == :on_moderation, 'link-dark': page_type != :on_moderation })
       = link_to t('admin.panel.bulletins'), admin_bulletins_path,
-                                            class: "nav-link #{page_type == :bulletins ? "active" : "link-dark"}"
+                                            class: class_names('nav-link', { active: page_type == :bulletins, 'link-dark': page_type != :bulletins })
       = link_to t('admin.panel.categories'), admin_categories_path,
-                                            class: "nav-link #{page_type == :categories ? "active" : "link-dark"}"
+                                            class: class_names('nav-link', { active: page_type == :categories, 'link-dark': page_type != :categories })
