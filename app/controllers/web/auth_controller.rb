@@ -10,24 +10,24 @@ module Web
 
       redirect_to root_path, alert: t('views.auth.actions.login.failure') and return unless email
 
-      add_user_to_session(name, email)
+      start_session(name, email)
 
       redirect_to root_path, notice: t('views.auth.actions.login.success')
     end
 
-    def logout
-      end_user_session
+    def end_session
+      sign_out
       redirect_to root_path, notice: t('views.auth.actions.logout.success')
     end
 
     private
 
-    def add_user_to_session(name, email)
+    def start_session(name, email)
       user = User.find_or_create_by(email:) do |u|
         u.name = name
       end
 
-      start_user_session(user)
+      sign_in(user)
     end
 
     def auth

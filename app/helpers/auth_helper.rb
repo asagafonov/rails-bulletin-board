@@ -5,11 +5,11 @@ module AuthHelper
     User.find_by(id: session[:user_id]) if session[:user_id]
   end
 
-  def start_user_session(user)
+  def sign_in(user)
     session[:user_id] = user.id
   end
 
-  def end_user_session
+  def sign_out
     session[:user_id] = nil
   end
 end

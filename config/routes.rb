@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
     post 'auth/:provider', to: 'auth#request', as: :auth_request
     get 'auth/:provider/callback', to: 'auth#callback', as: :callback_auth
-    get 'auth/logout', to: 'auth#logout'
+    get 'auth/logout', to: 'auth#end_session'
 
     resources :bulletins, only: %i[index show new create edit update] do
       patch 'to_moderation', on: :member
