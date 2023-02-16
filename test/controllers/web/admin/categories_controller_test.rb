@@ -65,7 +65,7 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
 
     category = Category.find_by(@params)
 
-    assert !category
+    assert_not category
     assert_redirected_to root_path
   end
 
