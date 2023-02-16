@@ -21,14 +21,6 @@ class BulletinPolicy < ApplicationPolicy
     current_user?
   end
 
-  def publish?
-    user&.admin?
-  end
-
-  def reject?
-    user&.admin?
-  end
-
   def archive?
     current_user? || user&.admin?
   end
