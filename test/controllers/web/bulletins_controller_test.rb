@@ -39,8 +39,8 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     post bulletins_url, params: { bulletin: @params.merge(@attachments) }
     bulletin = Bulletin.find_by(@params)
 
-    assert { bulletin }
-    assert { bulletin.image.attached? }
+    assert bulletin
+    assert bulletin.image.attached?
     assert_redirected_to bulletin_path(bulletin)
   end
 
@@ -49,7 +49,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
 
     @bulletin.reload
 
-    assert { @bulletin.title == @params[:title] }
+    assert @bulletin.title == @params[:title]
     assert_redirected_to bulletin_url(@bulletin)
   end
 
@@ -58,7 +58,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
 
     @bulletin.reload
 
-    assert { @bulletin.title != @params[:title] }
+    assert @bulletin.title != @params[:title]
 
     assert_redirected_to root_path
   end
@@ -68,7 +68,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
 
     @bulletin.reload
 
-    assert { @bulletin.state == 'under_moderation' }
+    assert @bulletin.under_moderation?
     assert_redirected_to profile_url
   end
 
@@ -77,7 +77,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
 
     @bulletin.reload
 
-    assert { @bulletin.state == 'archived' }
+    assert @bulletin.archived?
     assert_redirected_to profile_url
   end
 end

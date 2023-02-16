@@ -28,7 +28,7 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
 
     category = Category.find_by(@params)
 
-    assert { category }
+    assert category
     assert_redirected_to admin_categories_url
   end
 
@@ -38,7 +38,7 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
     patch admin_category_url(@category), params: { category: { name: 'Edited name' } }
     @category.reload
 
-    assert { @category.name == 'Edited name' }
+    assert @category.name == 'Edited name'
     assert_redirected_to admin_categories_url
   end
 
@@ -46,7 +46,7 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
     sign_in @admin
 
     delete admin_category_url(@category)
-    assert { @category }
+    assert @category
     assert_redirected_to admin_categories_url
   end
 
@@ -65,7 +65,7 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
 
     category = Category.find_by(@params)
 
-    assert { !category }
+    assert !category
     assert_redirected_to root_path
   end
 
@@ -85,7 +85,7 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
 
     delete admin_category_url(@category)
 
-    assert { @category }
+    assert @category
     assert_redirected_to root_path
   end
 

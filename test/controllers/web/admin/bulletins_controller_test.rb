@@ -10,6 +10,18 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
     @bulletin = bulletins(:pasta)
   end
 
+  test 'admin should access root' do
+    sign_in @admin
+    get admin_root_url
+    assert_response :success
+  end
+
+  test 'user should not access root' do
+    sign_in @user
+    get admin_root_url
+    assert_redirected_to root_url
+  end
+
   test 'admin should access index' do
     sign_in @admin
     get admin_bulletins_url
@@ -29,7 +41,7 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
 
     @bulletin.reload
 
-    assert { @bulletin.state == 'published' }
+    assert @bulletin.published?
     assert_redirected_to admin_root_url
   end
 
@@ -40,7 +52,7 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
 
     @bulletin.reload
 
-    assert { @bulletin.state == 'under_moderation' }
+    assert @bulletin.under_moderation?
     assert_redirected_to root_url
   end
 
@@ -51,7 +63,7 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
 
     @bulletin.reload
 
-    assert { @bulletin.state == 'rejected' }
+    assert @bulletin.rejected?
     assert_redirected_to admin_root_url
   end
 
@@ -62,7 +74,7 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
 
     @bulletin.reload
 
-    assert { @bulletin.state == 'under_moderation' }
+    assert @bulletin.under_moderation?
     assert_redirected_to root_url
   end
 
@@ -73,7 +85,7 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
 
     @bulletin.reload
 
-    assert { @bulletin.state == 'archived' }
+    assert @bulletin.archived?
     assert_redirected_to admin_root_url
   end
 
@@ -84,7 +96,7 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
 
     @bulletin.reload
 
-    assert { @bulletin.state == 'archived' }
+    assert @bulletin.archived?
     assert_redirected_to admin_bulletins_url
   end
 
@@ -95,7 +107,7 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
 
     @bulletin.reload
 
-    assert { @bulletin.state == 'under_moderation' }
+    assert @bulletin.under_moderation?
     assert_redirected_to root_url
   end
 end
