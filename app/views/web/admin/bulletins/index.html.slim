@@ -1,5 +1,5 @@
 .row
-  = render 'web/admin/admin_panel', page_type: :bulletins
+  = render 'web/admin/admin_panel'
   .col-md-9
     h1.pb-4.mb-4.border-bottom.h3 = t('admin.panel.bulletins')
     = render 'shared/search_form', query: @query, url: admin_bulletins_path, admin_space: true
