@@ -2,8 +2,6 @@
 
 module Web
   class AuthController < ApplicationController
-    include AuthConcern
-
     def callback
       name = auth[:name] || nil
       email = auth[:email]
