@@ -5,6 +5,8 @@
 
 ### [Deployment link](https://rails-bulletin-board.up.railway.app)
 
+> Deployment might be down if Railway hours expire by the end of the month. Feel free to set up project locally, instructions below.
+
 ### Project description
 
 Bulletin board app. Allows to create bulletins. Has admin space to control and moderate bulletin drafts. Has built-in search and pagination. Auth via GitHub.
